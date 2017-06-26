@@ -1,0 +1,11 @@
+Flask
+Flask-SQLAlchemy
+Jinja2
+MarkupSafe
+SQLAlchemy
+Werkzeug
+click
+gunicorn
+itsdangerous
+wsgiref
+psycopg2

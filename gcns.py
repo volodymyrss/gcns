@@ -8,8 +8,14 @@ import datetime as dt
 requests_cache.install_cache('cache')
 
 class GCNCirc:
-    def __init__(self,content):
-        self.parse(content)
+    def __init__(self,content=None,number=None):
+        if content is not None:
+            self.parse(content)
+        elif number is not None:
+            self.parse(self.fetch(number))
+
+    def fetch(self,number):
+        return requests.get("https://gcn.gsfc.nasa.gov/gcn3/%s.gcn3"%number).content.decode('utf-8', errors='ignore')
 
     def extract_fields(self, content):
         self.gcn_data = {}
@@ -31,6 +37,7 @@ class GCNCirc:
         self.authors_paragraph=self.authors_paragraph.replace(" and ",", ")
         self.authors_paragraph = re.sub("\(.*?\)","",self.authors_paragraph)
         self.authors_paragraph = re.sub("\+", " ", self.authors_paragraph)
+        self.authors_paragraph = re.sub("reports on behalf of .*?:",",",self.authors_paragraph)
 
         self.authors_paragraph=self.authors_paragraph.replace("C.-C., Ngeow","C.-C. Ngeow ") # put in known bugs
 
@@ -97,7 +104,7 @@ class GCNCirc:
             line_comment_prefix='%#',
             trim_blocks=True,
             autoescape=False,
-            loader=jinja2.FileSystemLoader(os.path.abspath('../')),
+            loader=jinja2.FileSystemLoader(os.path.abspath( os.path.dirname(os.path.realpath(__file__))+'/templates')),
             undefined=jinja2.StrictUndefined,
         )
 
