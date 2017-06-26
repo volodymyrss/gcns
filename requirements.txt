@@ -7,4 +7,4 @@ Werkzeug
 click
 gunicorn
 itsdangerous
-psycopg2
+requests
