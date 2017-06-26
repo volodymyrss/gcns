@@ -71,7 +71,11 @@ class GCNCirc:
             author_line = re.sub("([A-Z]).([A-Z])", "\\1 \\2", author_line)
 
             if first_then_last:
-                fn,ln=re.search("(.*) (.*)",author_line).groups()
+                r=re.search("(.*) (.*)",author_line)
+                if not r:
+                    #TODO: report failues
+                    continue
+                fn,ln=r.groups()
             else:
                 ln, fn = re.search("(.*),(.*)", author_line).groups()
 

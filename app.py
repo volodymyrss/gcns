@@ -25,8 +25,8 @@ class User(db.Model):
 
 @app.route('/', methods=['GET'])
 def index():
-    return gcns.GCNCirc(number=100).render_bib()
-    #return render_template('index.html', users=User.query.all())
+    #return gcns.GCNCirc(number=100).render_bib()
+    return render_template('index.html', users=User.query.all())
 
 
 @app.route('/gcn-bib/bynumber/<int:number>', methods=['GET'])
