@@ -1,7 +1,7 @@
 
-def test_ligo_fetch():
+def test_fetch_stacks():
     import gcns
-    g=gcns.LIGOGCNCircSource(["GW170104","GW150914"])
+    g=gcns.MergedGCNCircSource(["GW170104","GW150914","170105A"])
 
     gcn=g.gcn_circ[1]
 

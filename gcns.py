@@ -123,7 +123,7 @@ class StandardGCNCircSource(GCNCircSource):
     pass
 
 
-class LIGOGCNCircSource(GCNCircSource):
+class MergedGCNCircSource(GCNCircSource):
     def __init__(self,ligo_triggers):
         self.ligo_triggers=ligo_triggers
 
