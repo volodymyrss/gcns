@@ -7,5 +7,4 @@ Werkzeug
 click
 gunicorn
 itsdangerous
-wsgiref
 psycopg2
